@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+
+
+    <script type="text/javascript">
+
+/// Method to find the absolute object type
+Object.prototype.toString.call(arr);
+
+
+//Object Sorting Algorithm
+  function objectSort(obj){
+    let arr = Object.entries(obj).sort()
+    return Object.fromEntries(arr)
+}
+
+//Array sorting Algorithm
+function arrSort(arr){
+  let box = [];
+  while(arr.length>0){
+    box.push(Math.min.apply(0,arr))
+    arr.splice(arr.indexOf(Math.min.apply(0,arr)),1)
+  }
+  return box
+}
+
+//Factorial Algorithm
+function factorial(n){
+  let c = 1;
+  for(let i=1;i<=n;i++){
+    c*=i
+  }
+  return c
+}
+
+//The biggest from Array Algorithm
+function biggest(arr){
+  return arr.reduce(function(total,val){
+    if(total>val){return total}
+    else{return val}
+  })
+}
+
+//Chess board Algorithm
+function chess(){
+  let txt = "";
+  for(let i=0;i<8;i++){
+    for(let j = 0;j<8;j++){
+      if((i+j)%2==0){
+        txt+=" 0 "
+      }
+      else{txt+=" 1 "}
+    }
+    txt+="\n"
+  }
+  return txt
+}
+
+//Get all possible combinations from string Algorithm
+function possible(str){
+  let txt = "";
+  for(let i = 0;i<str.length;i++){
+    for(let j=str.length;j>0;j--){
+      txt+=str.slice(i,j)+"\n"
+    }
+  }
+  return txt
+}
+
+//Text animation Algorithm
+function animate(str){
+  let demo = document.getElementById("demo");
+  function k(){
+  str = str.substr(1)+str[0]
+   demo.innerHTML = str
+ }
+  setInterval(k,1000)
+}
+
+animate("Hola")
+
+// Remove Dublicates From Array Algorithm
+function dubl(arr){
+  let box=[];
+  arr.sort();
+  for(let i=0;i<arr.length;i++){
+    if(arr[i]!=arr[i+1]){
+         box.push(arr[i])
+     }
+  }
+  return box
+}
+
+
+
+// Find The Max From The Array Algorithm
+function max(arr){
+  let len = arr.length;
+  let max = -Infinity;
+  while(len--){
+    if(arr[len]>max){
+      max=arr[len]
+    }
+  }
+  return max
+  }
+
+// Find The Min From The Array Algorithm
+function min(arr){
+  let len = arr.length;
+  let min = Infinity;
+  while(len--){
+    if(arr[len]<min){min=arr[len]}
+  }
+  return min
+}
+
+
+// Remove all characers except letters and numbers Algorithm
+function count(str){
+str = str.trim();
+let long = str;
+for(let i=0;i<long.length;i++){
+  if(!/[a-z]/.test(long[i])&&
+     !/[A-Z]/.test(long[i])&&
+     !/[0-9]/.test(long[i])&&
+     !/\s/.test(long[i])
+    ){
+  long = long.replaceAll(long[i],"");
+  }
+}
+return long;
+}
+
+// Find difference between arrays
+function difference(arr,arr2){
+  let box = [],big,small;
+  if(arr.length>arr2.length||
+     arr.length==arr2.length){
+    big = arr,small = arr2;
+  }
+  else{big=arr2;small=arr;}
+
+  for(let i=0;i<big.length;i++){
+    if(!small.includes(big[i])){
+      box.push(big[i])
+    }
+  }
+
+  for(i=0;i<small.length;i++){
+    if(!big.includes(small[i])){
+      box.push(small[i])
+    }
+  }
+  return box
+}
+
+//fibonacci numbers
+function fibonacci(num){
+   let arr=[2,3];
+   for(let i=0;i<=num;i++){
+    if(arr[i]+arr[i+1]<=num){
+     arr.push(arr[i]+arr[i+1])
+    }
+
+   }
+  return arr
+}
+
+
+//Output the numbers that have the sum resault in the same array
+function sum(arr){
+  let res=[];
+   for(let i=0;i<=arr.length;i++){
+   for(let j=i+1;j<=arr.length-1;j++){
+   if(arr.includes(arr[i]+arr[j])){
+         res.push([arr[i],arr[j],arr[i]+arr[j]])
+       }
+     }
+   }
+  return res
+}
+
+//Find the positions and letters(words) in all Text
+function find(text,word){
+  let reg = new RegExp(word,"gi");
+  let positions = [];
+  let arr = text.match(reg);
+  if(arr!=null){
+     for(let i=0;i<arr.length;i++){
+       let index = text.indexOf(arr[i]);
+       positions.push(index + " " + text.substr(index,word.length));
+       text = text.replace(arr[i]," ");
+     }
+    return positions;
+  }
+  else{
+   return "Nothing found."
+  }
+ }
+
+
+//logarythm calculator
+
+function loga(num,log){
+  let res;
+  for(let i=2;i<log;i++){
+    if(Math.pow(num,i)==log){
+      res=i
+    }
+  }
+  return res;
+}
+
+
+// Uppercase character generator function
+function charGen(){
+  let code = Math.round(Math.random()*100);
+  if(code < 65 && code > 35){
+    let temp = 65-code;
+    if(temp<35){
+      code = temp + code
+   }
+    else{
+      code + 9
+    }
+  }
+  else if(code < 65 && code < 35){
+    code = 65+code
+  }
+  let char =
+  String.fromCharCode(code);
+  let char2;
+  if(code<70){
+    char2 = String.fromCharCode(code+5)
+  }
+  else{
+    char2 = String.fromCharCode(code-5)
+  }
+
+  return char + char2
+}
+
+console.log(charGen())
+
+/////  Prime number check
+function isPrime(num){
+ let box = [];
+
+ for(let i=2;i<num;i++){
+   if(num%i==0){
+     box.push(i)
+   }
+ }
+ return box.length==0
+}
+
+/////  Infinite parameter function
+function add(num){
+  if(num){
+    return function(num2){
+      if(num2){
+       return add(num + num2)
+      }
+      else{return num}
+    }
+  }
+}
+
+console.log( add(2)(3)(5)() )
+
+//////////
+
+
+
+    </script>
+
+  </body>
+</html>
