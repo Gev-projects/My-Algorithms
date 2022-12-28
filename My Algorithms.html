@@ -7,17 +7,17 @@
 
     <script type="text/javascript">
 
-/// Method to find the absolute object type
+//// Method to find the absolute object type
 Object.prototype.toString.call(arr);
 
 
-//Object Sorting Algorithm
+//// Object Sorting Algorithm
   function objectSort(obj){
     let arr = Object.entries(obj).sort()
     return Object.fromEntries(arr)
 }
 
-//Array sorting Algorithm
+//// Array sorting Algorithm
 function arrSort(arr){
   let box = [];
   while(arr.length>0){
@@ -27,7 +27,7 @@ function arrSort(arr){
   return box
 }
 
-//Factorial Algorithm
+//// Factorial Algorithm
 function factorial(n){
   let c = 1;
   for(let i=1;i<=n;i++){
@@ -36,7 +36,7 @@ function factorial(n){
   return c
 }
 
-//The biggest from Array Algorithm
+//// The biggest from Array Algorithm
 function biggest(arr){
   return arr.reduce(function(total,val){
     if(total>val){return total}
@@ -44,7 +44,7 @@ function biggest(arr){
   })
 }
 
-//Chess board Algorithm
+//// Chess board Algorithm
 function chess(){
   let txt = "";
   for(let i=0;i<8;i++){
@@ -59,7 +59,7 @@ function chess(){
   return txt
 }
 
-//Get all possible combinations from string Algorithm
+//// Get all possible combinations from string Algorithm
 function possible(str){
   let txt = "";
   for(let i = 0;i<str.length;i++){
@@ -70,7 +70,7 @@ function possible(str){
   return txt
 }
 
-//Text animation Algorithm
+//// Text animation Algorithm
 function animate(str){
   let demo = document.getElementById("demo");
   function k(){
@@ -82,7 +82,7 @@ function animate(str){
 
 animate("Hola")
 
-// Remove Dublicates From Array Algorithm
+//// Remove Dublicates From Array Algorithm
 function dubl(arr){
   let box=[];
   arr.sort();
@@ -96,7 +96,7 @@ function dubl(arr){
 
 
 
-// Find The Max From The Array Algorithm
+//// Find The Max From The Array Algorithm
 function max(arr){
   let len = arr.length;
   let max = -Infinity;
@@ -108,7 +108,7 @@ function max(arr){
   return max
   }
 
-// Find The Min From The Array Algorithm
+//// Find The Min From The Array Algorithm
 function min(arr){
   let len = arr.length;
   let min = Infinity;
@@ -119,7 +119,7 @@ function min(arr){
 }
 
 
-// Remove all characers except letters and numbers Algorithm
+//// Remove all characers except letters and numbers Algorithm
 function count(str){
 str = str.trim();
 let long = str;
@@ -135,7 +135,7 @@ for(let i=0;i<long.length;i++){
 return long;
 }
 
-// Find difference between arrays
+//// Find difference between arrays
 function difference(arr,arr2){
   let box = [],big,small;
   if(arr.length>arr2.length||
@@ -158,7 +158,7 @@ function difference(arr,arr2){
   return box
 }
 
-//fibonacci numbers
+//// fibonacci numbers
 function fibonacci(num){
    let arr=[2,3];
    for(let i=0;i<=num;i++){
@@ -171,7 +171,7 @@ function fibonacci(num){
 }
 
 
-//Output the numbers that have the sum resault in the same array
+//// Output the numbers that have the sum resault in the same array
 function sum(arr){
   let res=[];
    for(let i=0;i<=arr.length;i++){
@@ -184,7 +184,7 @@ function sum(arr){
   return res
 }
 
-//Find the positions and letters(words) in all Text
+//// Find the positions and letters(words) in all Text
 function find(text,word){
   let reg = new RegExp(word,"gi");
   let positions = [];
@@ -203,8 +203,7 @@ function find(text,word){
  }
 
 
-//logarythm calculator
-
+//// Logarithm calculator
 function loga(num,log){
   let res;
   for(let i=2;i<log;i++){
@@ -216,7 +215,7 @@ function loga(num,log){
 }
 
 
-// Uppercase character generator function
+//// Uppercase character generator function
 function charGen(){
   let code = Math.round(Math.random()*100);
   if(code < 65 && code > 35){
@@ -246,7 +245,7 @@ function charGen(){
 
 console.log(charGen())
 
-/////  Prime number check
+////  Prime number check
 function isPrime(num){
  let box = [];
 
@@ -258,7 +257,7 @@ function isPrime(num){
  return box.length==0
 }
 
-/////  Infinite parameter function
+////  Infinite parameter function
 function add(num){
   if(num){
     return function(num2){
@@ -273,7 +272,7 @@ function add(num){
 console.log( add(2)(3)(5)() )
       
 
-///// Return the change with the highest bills algorythm
+//// Return the change with the highest bills algorithm
 function cashout(cash){
   const bills = [20000,10000,5000,2000,1000];
   const min = Math.min.apply(0, bills);
@@ -293,6 +292,62 @@ function cashout(cash){
 }
 
 console.log( cashout(83000) )
+      
+      
+//// ATM cashout algorithm divided into 2 functions
+  // 2nd part
+function cashout(cash, stock){
+  let bills=[];
+  for(let x in stock){
+    if(stock[x] > 0){
+      bills.push(x)
+    }
+  }
+  const min = Math.min.apply(0, bills);
+  const box = [];
+  let ceil;
+  let temp = cash;
+  
+  if(bills.includes(cash)){return cash};
+  if(cash < min || cash % min !== 0){return 'wrong amount'};
+  
+  while(temp !== 0){
+    for(let x in stock){
+      if(stock[x] > 0){
+        bills.push(x)
+      }
+    }
+    ceil = bills.reduce(function(total,val){
+    if(total>val){return total}
+    else{return val}
+  })
+     stock[ceil] = stock[ceil]-1
+     temp = temp-ceil;
+     box.push(ceil);
+     bills = [];
+   }
+  return box
+}
+//1st part
+function atm(cash){
+  let total=0;
+  let availableBills=[];
+  const stock = {
+    20000: 1,
+    10000: 1,
+    5000: 1,
+    2000: 0,
+    1000: 2,
+  };
+  for(let x in stock){
+    total+=(x*stock[x])
+  }
+  if(cash>total){return 'Sorry can\'t\ supply that amount of money '}
+  else{return cashout(cash, stock)};
+}
+
+console.log(  atm(37000) )
+
 
 //////////
 
