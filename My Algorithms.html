@@ -276,14 +276,13 @@ console.log( add(2)(3)(5)() )
 ///// Return the change with the highest bills algorythm
 function cashout(cash){
   const bills = [20000,10000,5000,2000,1000];
-  const max = Math.max.apply(0, bills);
   const min = Math.min.apply(0, bills);
   const box = [];
   let ceil;
   let temp = cash;
   
   if(bills.includes(cash)){return cash};
-  if(cash<min || cash%min !==0){return 'wrong amount'};
+  if(cash < min || cash % min !== 0){return 'wrong amount'};
   
   while(temp !== 0){
      ceil = bills.find(bill=>temp>=bill);
